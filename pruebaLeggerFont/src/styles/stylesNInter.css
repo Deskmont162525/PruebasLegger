@@ -1,0 +1,250 @@
+/**
+GLOBALES
+*/
+
+h1 {
+  color: #515751;
+
+  font-weight: normal;
+}
+img {
+  width: 100%;
+  height: 100vh;
+  margin-top: -6rem;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(../assets/images/TEXTURAS.png),
+    url(../assets/images/concurso-pto-venta-halloween-2-fondo.jpg);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+.card {
+  color: #4a4a4a;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 80px;
+  background-color: rgb(228, 220, 233);
+}
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.divBodyIni {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .divBodyIni {
+    flex-direction: row;
+    gap: 150px;
+  }
+  img {
+    width: 500px;
+  }
+  .card {
+    color: #4a4a4a;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 80px;
+    background-color: rgb(228, 220, 233);
+    width: 400px;
+  }
+}
+.titleIni {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-top {
+  font-size: 15px;
+  padding-left: 5px;
+}
+@media (min-width: 768px) {
+  .form-top {
+    font-size: 25px;
+    padding-left: 5px;
+  }
+}
+.input-hide {
+  float: right;
+  cursor: pointer;
+}
+.form-group2 {
+  display: flex;
+  align-items: center;
+}
+.form-group1 {
+  margin-left: 60px;
+  width: 300px;
+  align-items: center;
+}
+select.form-control:hover {
+  background: #f8f9f9;
+}
+
+option select.form-control :hover {
+  background: #f8f9f9;
+}
+
+input,
+select.form-control {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #4b6cb7;
+  background-color: #f7f7f7;
+  width: 250px;
+  padding: 13px 13px 10px 20px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 0, 0, 0);
+  border-radius: 20px;
+}
+
+.form-control:focus {
+  border: 3px solid #2ecc71;
+}
+
+.errorInput {
+  border: 3px solid #cc2e2e;
+}
+
+.infoError {
+  color: #cc2e2e;
+}
+
+.okInput {
+  border: 3px solid #2ecc71;
+}
+
+#pay-now {
+  font-size: 15px;
+  color: #f7f7f7;
+  background-color: #642c99;
+  margin: 0 auto;
+  width: 80%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0, 0, 0, 0);
+  transition: all 0.3s linear;
+  border-radius: 20px;
+}
+.form-group_city {
+  margin-left: 60px;
+  width: 100%;
+  align-items: center;
+  margin-left: -2rem;
+}
+@media (min-width: 768px) {
+  #pay-now {
+    width: 80%;
+    margin-bottom: 1rem;
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+#pay-now a {
+  text-decoration: none;
+  color: #4b6cb7;
+}
+
+#pay-now:hover {
+  color: #f7f7f7;
+  background: #5e1f88;
+  outline: none;
+  transition: all 0.3s linear;
+}
+
+.numberCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background: #642c99;
+  color: #f7f7f7;
+  font-weight: 900;
+  text-align: center;
+  font: 20px Arial, sans-serif;
+}
+#check2 {
+  font-size: 12rem;
+}
+.label {
+  display: block;
+  font-size: 12px;
+  margin-left: -3rem;
+  margin-right: 5rem;
+  margin-top: 1rem;
+  color: rgb(48, 72, 151);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  justify-content: center;
+}
+.form-check-input {
+  font-size: 12rem;
+}
+.col-sm-6 {
+  font-size: 20px;
+}
+@media (min-width: 768px) {
+  .label {
+    font-size: 13px;
+    margin-left: -3rem;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+}
+input[type="checkbox"] {
+  display: inline; /*solo se esconde para tener un campo personalisado*/
+}
+
+.payIni {
+  width: 60%;
+  margin-left: 40px;
+}
+
+label:before {
+  background-color: #f7f7f7;
+  border: 3px solid rgb(48, 72, 151);
+  border-radius: 2px;
+  display: inline-block;
+  height: 15px;
+  margin-right: 20px;
+  text-align: center;
+  text-shadow: 4px -2px 3px gray;
+  vertical-align: middle;
+  width: 15px;
+}
+input[type="checkbox"]:checked + label:before {
+  content: "✔";
+  font-family: "Times New Roman";
+  color: #8752a7;
+}
+
+@media (min-width: 767px) {
+  .bodyIni {
+    background-image: url(../assets/images/TEXTURAS.png),
+      url(../assets/images/KV.png),
+      url(../assets/images/concurso-pto-venta-halloween-2-fondo.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: cover, cover, cover;
+  }
+
+  
+}

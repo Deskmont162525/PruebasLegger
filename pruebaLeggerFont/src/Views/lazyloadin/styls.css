@@ -1,0 +1,855 @@
+:root {
+
+  /* colors */
+
+  --color--background:rgba(193, 232, 245,1);
+  --color--red: red;
+  --color--red--dark:rgba(200,0,0,1);
+  --color--skin:#e2baba;
+  --color--white:#fff;
+  --color--footstep : rgba(220,220,220,0.8);
+  --color--footstep--dark : rgba(150,150,150,0.8);
+  --color--mittens: #e2baba;
+  --color--shadow--dark:rgba(0,0,0,0.05);
+  --color--shadow--light:rgba(255,255,255,0.15);
+  --color--boot: rgba(130, 85, 55,1);
+
+  /* shadow */
+  --shadow--width : 0.04em;
+  --shadow--width--small : 0.02em;
+
+  /* 
+    animation values
+  */
+  
+  
+  
+
+  --animation--time : .45s;
+  --animation--time--half : calc( var(--animation--time) * 0.5 );
+  --animation--time--double : calc( var(--animation--time) * 2 );
+
+  --animation--snowflake--time:3s;
+
+  --body--jump:-20.5%;
+  --body--delay: calc( var(--animation--time) * (-4/5) );
+
+  --belly--bounce: 10%;
+  --belly--delay: calc( var(--animation--time) * (-0.1) );
+
+  --head--delay:calc( var(--animation--time) * (-0.12) ); 
+  --head--rotation : 10deg;
+
+  --nose--delay:calc( var(--animation--time) * (-0.53) );
+  --nose--rotation : 25deg;
+
+  --hat--jump :-15%;
+  --hat--delay:calc( var(--animation--time) * (0.3) );
+
+  --hat--ball--rotation :40deg;
+  --hat--ball--delay:calc( var(--animation--time) * (-0.52) );
+
+  --arm--delay : calc( var(--animation--time) * (-0.52) );
+  --arm--rotation--from : 25deg;
+  --arm--rotation--to : -25deg;
+  --arm--translate--from : -30%;
+  --arm--translate--to : 30%;
+
+  --arm--lower--delay : 0s;
+  --arm--lower--rotation--from:15deg;
+  --arm--lower--rotation--to:15deg;
+  
+
+
+  --leg--rotation--from : -15deg;
+  --leg--rotation--to : 45deg;
+  --leg--translate--from : 5%;
+  --leg--translate--to : -5%;
+  
+  --leg2--delay:calc( var(--animation--time) * (-0.5) );
+
+  --boot--rotation--from : -5deg;
+  --boot--rotation--to : 85deg;
+  --boot--delay:calc( var(--animation--time) * (-0.8) );
+
+  --boot2--delay:calc( var(--animation--time) * (-0.3) );;
+
+  --foot--rotation--from : -15deg;
+  --foot--rotation--to : 35deg;
+  --foot--delay:calc( var(--animation--time) * (-0.919999) );
+
+  --foot2--delay:calc( var(--animation--time) * (-0.42) );;
+  
+
+  --footstep--delay: calc( var(--animation--time) * (-0.9) );;
+  --footstep2--delay: calc( var(--animation--time) * (-0.40) );;
+  --footstep3--delay: calc( var(--animation--time) * (-1.3) );;
+  --footstep4--delay: calc( var(--animation--time) * (-1.9) );;
+
+  --animation--timing--function : cubic-bezier(1.000, 0.000, 0.000, 1.000);
+  /*
+    cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  */
+}
+
+/* Elements */ 
+
+.screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0.5;
+}
+
+.bodyLoadin{
+  padding:0;
+  margin:0;
+  font-family: 'Pacifico', cursive;
+  
+}
+
+.title{
+  position:absolute;
+  left:50%;
+  top:5%;
+  text-align:center;
+  transform:translate(-50%);
+  width:100%;
+  font-size:15vh;
+  color:white;
+  
+  text-shadow: 4px 4px rgba(0,0,0,0.1);
+  line-height:1.2;
+  /* white-space:nowrap; */
+}
+
+@media screen and (max-width: 720px) {
+  .title{
+      font-size:9vh;
+  }
+}
+
+/* bling */
+
+.snowflake{
+  width:2%;
+  height:2%;
+  background-color:white;
+  border-radius:100%;
+  position:absolute;
+  right:50%;
+  
+  animation: var(--animation--snowflake--time) 0s infinite forwards animation--snowflake;
+}
+
+.snowflake--small{
+  width:1%;
+  height:1%;
+  background-color:white;
+  animation-duration:calc( var(--animation--snowflake--time) * 2 );
+}
+
+.snowflake--large{
+  width:5%;
+  height:5%;
+  animation-duration:calc( var(--animation--snowflake--time) * 2 );
+}
+
+.star {
+  position: absolute;
+  left:0;top:0%;
+  
+  padding:0;
+  background-color:white;
+  margin:0 auto;
+  width:1%;
+  height: 0;
+  padding-bottom: 1%; /* 16:9 */
+  transform:rotate(45deg);
+  box-sizing:border-box;
+  /* box-shadow: 0px 0px 10px 10px rgba(255,255,200,0.2); */
+  animation: var(--animation--time--half) 0s infinite forwards animation--star;
+}
+
+
+
+.scene{
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  left:0;top:0;
+  background:var(--color--background);
+  background: rgb(118,202,230);
+background: linear-gradient(180deg, rgb(50, 108, 128) 0%, rgb(123, 174, 187) 32%, rgba(247,171,10,1) 100%);
+  filter:sepia(45%);
+}
+
+.scene:active {
+
+}
+
+.ground{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+  width:300%;
+  height:35%;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(200,200,200,1) 100%);
+}
+
+.footstep{
+  position:absolute;
+  left:40%;
+  bottom:5%;
+  width:12%;
+  height:7%;
+  border-radius:30%/30%;
+  background-color:var(--color--footstep);
+  background: linear-gradient(180deg, var(--color--footstep) 40%, var(--color--footstep--dark) 100%);
+  animation: var(--animation--time--double) var(--footstep--delay) infinite forwards animation--footstep;
+}
+
+.footstep2{
+  animation: var(--animation--time--double) var(--footstep2--delay) infinite forwards animation--footstep;
+  left:52%;
+}
+
+.footstep3{
+  animation: var(--animation--time--double) var(--footstep3--delay) infinite forwards animation--footstep;
+}
+
+.footstep4{
+  animation: var(--animation--time--double) var(--footstep4--delay) infinite forwards animation--footstep;
+  
+}
+
+.container--santa{
+  position:absolute;
+  margin:0 auto;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+  width:80%;
+  max-width:400px;
+  height:100%;
+  font-size:3000%; /* this can be animated to change the size of the shadow */
+
+}
+
+@media screen and (max-width: 500px) {
+.container--santa{
+    font-size:50vh;
+}
+}
+
+
+
+
+.container--santa--shadow{
+  
+
+  filter:brightness(0%);
+  transform-origin:2rem 2rem;
+  
+  
+  
+  
+}
+
+
+.container{
+  position: absolute;
+  left:0;bottom:10%;
+  
+  padding:0;
+  
+  margin:0 auto;
+  width:100%;
+  height: 0;
+  padding-bottom: 100%; /* 16:9 */
+  
+  box-sizing:border-box;
+}
+
+.container--shadow{
+    filter:brightness(0%);
+    left:0%;
+    opacity:0.2;
+    transform:scaleY(-1) translateX(-50%) translateY(-85%) skewX(50deg);
+}
+
+.santa{
+  position: absolute;
+  width: 31.8%;
+  height: 36.5%;
+  left: 34.1%;
+  top: 41%;
+  transform-origin: 0% 100%;
+  font-size:100%; /* this can be animated to change the size of the shadow */
+  border-radius: 20%/20%;
+  box-sizing:border-box;
+  animation: var(--animation--time) var(--body--delay) infinite forwards animation--jump;
+}
+
+.santa--shadow{
+    filter:brightness(0%);
+    
+}
+
+
+
+.body{
+  position: absolute;
+  width: 98.8%;
+  height: 101.5%;
+  left: 1.1%;
+  top: -1%;
+  transform-origin: 0% 100%;
+  background-color: var(--color--red);
+  border-radius: 20%/20%;
+  border-left:var(--shadow--width)  solid var(--color--shadow--dark);
+  box-sizing:border-box;
+  border-right:var(--shadow--width)  solid var(--color--shadow--light);
+  
+}
+
+.belly{
+  position: absolute;
+  width: 98.8%;
+  height: 74.5%;
+  left: 16.1%;
+  top: 26%;
+  transform-origin: 0% 100%;
+  background-color: var(--color--red);
+  border-radius: 30%/30%;
+  border-right:var(--shadow--width) solid var(--color--shadow--light);
+  box-sizing:border-box;
+
+  animation: var(--animation--time--half) var(--belly--delay) infinite forwards animation--belly;
+}
+
+
+.head{
+  position: absolute;
+  width: 75.4%;
+  height: 54.7%;
+  left: 11%;
+  top: -54%;
+  transform-origin: 50% 100%;
+  background-color: var(--color--skin);
+  border-radius: 20%/20%;
+  
+  box-sizing:border-box;
+
+  animation: var(--animation--time--half) var(--head--delay) infinite forwards animation--head;
+}
+
+.head--shadow{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-left:var(--shadow--width)  solid var(--color--shadow--dark);
+  box-sizing:border-box;
+}
+
+.nose{
+  position: absolute;
+  width: 55.4%;
+  height: 48.7%;
+  left: 85%;
+  top: 22%;
+  transform-origin: 10% 50%;
+  background-color: var(--color--skin);
+  border-radius: 28%/29%;
+  box-sizing:border-box;
+  border-right:var(--shadow--width--small)  solid var(--color--shadow--light);
+
+  animation: var(--animation--time--half) var(--nose--delay) infinite forwards animation--nose;
+  
+}
+
+.hat{
+  
+  
+  position: absolute;
+  width: 110.4%;
+  height: 66.7%;
+  left: -5%;
+  top: -45%;
+  transform-origin: 0% 100%;
+  background-color: var(--color--red);
+  border-radius: 26%/29%;
+  box-sizing: border-box;
+
+  animation: var(--animation--time) var(--hat--delay) infinite forwards animation--hat;
+}
+
+.hat--ball{
+
+  position:absolute;
+  width: 41.4%;
+  height: 76.7%;
+  left: 27%;
+  top: -68%;
+  transform-origin: 50% 100%;
+  background-color: var(--color--white);
+  border-radius: 100%;
+  animation: var(--animation--time--half) var(--hat--ball--delay) infinite forwards animation--hat--ball;
+}
+
+.hat--fur{
+  font-size: 100vw;
+  position: absolute;
+  width: 117.4%;
+  height: 66.7%;
+  left: -7%;
+  top: 50%;
+  transform-origin: 0% 100%;
+  background-color: var(--color--white);
+  border-radius: 14%/29%;
+}
+
+.hat--tail{
+
+
+  position: absolute;
+  width: 40.4%;
+  height: 147.7%;
+  left: -10%;
+  top: 15%;
+  transform-origin: 50% 10%;
+  transform:rotate(10deg);
+  background-color: var(--color--red);
+  border-radius: 40%/20%;
+  box-sizing: border-box;
+
+}
+
+.hat--tail--ball{
+
+
+  position: absolute;
+  width: 117.4%;
+  height: 58%;
+  left: -7%;
+  top: 82%;
+  transform-origin: 0% 100%;
+  background-color: var(--color--white);
+  border-radius: 40%/40%;
+  box-sizing: border-box;
+
+}
+
+.leg{
+  position:absolute;
+  width: 25%;
+  height: 45%;
+  left: 22.1%;
+  top: 80%;
+  transform-origin: 50% 0%;
+  background-color: var(--color--red);
+  border-radius: 90%/50%;
+
+  box-sizing: border-box;
+  animation: var(--animation--time) 0s infinite forwards animation--legs;
+}
+
+  
+
+.boot{
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  left: 0%;
+  top: 60%;
+  transform-origin: 50% 20%;
+  background-color: var(--color--boot); 
+  box-sizing:border-box;
+  border-radius:40%/40%;
+  animation: var(--animation--time) var(--boot--delay) infinite forwards animation--boot;
+}
+
+.foot{
+  position: absolute;
+  width: 150%;
+  height: 50%;
+  left: 0%;
+  top: 60%;
+  transform-origin: 20% 50%;
+  background-color: var(--color--boot);
+  
+  
+  box-sizing:border-box;
+
+  border-radius:25%/75%;
+
+  animation: var(--animation--time) var(--foot--delay) infinite forwards animation--foot;
+}
+
+.leg2{
+  left:50%;
+  background-color: var(--color--red--dark);
+  animation-delay:var(--leg2--delay);
+}
+
+.boot2{
+
+animation-delay:var(--boot2--delay);
+} 
+
+.foot2{
+  
+  animation-delay:var(--foot2--delay);
+  } 
+
+
+  .arm{
+      
+      position: absolute;
+      width: 20%;
+      height: 46%;
+      left: 30.1%;
+      top: 3%;
+      transform-origin: 50% 10%;
+      
+      border-radius: 100%/50%;
+      box-sizing: border-box;
+      animation: var(--animation--time) 0s infinite forwards animation--arm;
+      animation-delay:var(--arm--delay);
+    }
+
+    .arm--upper{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+      transform-origin: 50% 0%;
+      background-color: var(--color--red--dark);
+      border-radius: 100%/40%;
+      box-sizing: border-box;
+      border-left:var(--shadow--width--small)  solid var(--color--shadow--dark);
+    }
+
+    .arm--lower{
+      position: absolute;
+      width: 100%;
+      height: 80%;
+      left: 2%;
+      top: 64%;
+      transform-origin: 50% 24%;
+      transform:rotate(-84deg);
+      box-sizing: border-box;
+      
+    }
+
+    .arm--lower--graphics{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+      transform-origin: 50% 0%;
+      background-color:var(--color--red--dark);
+      border-radius: 100%/50%;
+      box-sizing: border-box;
+      border-left:var(--shadow--width--small)  solid var(--color--shadow--dark);
+    }
+
+    .hand{
+      position: absolute;
+      width: 120%;
+      height: 80%;
+      left: -10%;
+      top: 70%;
+      transform-origin: 50% 0%;
+      background-color:var(--color--mittens);
+      border-radius: 100%/80%;
+      box-sizing: border-box;
+      border-left:var(--shadow--width--small)  solid var(--color--shadow--dark);
+    }
+
+/* 
+  animations 
+*/
+
+ /* jump */
+ @keyframes animation--jump{
+  
+  0%{
+    transform:translateY(0%);
+    animation-timing-function:var(--animation--timing--function);
+  }
+  25%{
+      transform:translateY(var(--body--jump));
+      animation-timing-function:var(--animation--timing--function);
+      animation-timing-function:ease-in;
+  }
+  40%{
+      transform:translateY(0%);
+      animation-timing-function:var(--animation--timing--function);
+  }
+
+  50%{
+      transform:translateY(0%);
+      animation-timing-function:var(--animation--timing--function);
+    }
+    75%{
+        transform:translateY(var(--body--jump));
+        animation-timing-function:var(--animation--timing--function);
+        animation-timing-function:ease-in;
+    }
+    90%{
+        transform:translateY(0%);
+        animation-timing-function:var(--animation--timing--function);
+        
+    }
+
+  
+
+  
+  
+}
+
+
+/* leg */
+@keyframes animation--legs{
+
+    0%{
+      transform:translateX(var(--leg--translate--from)) rotate(var(--leg--rotation--from));
+      animation-timing-function:var(--animation--timing--function);
+    }
+    
+    50%{
+      transform:translateX(var(--leg--translate--to)) rotate(var(--leg--rotation--to));
+      animation-timing-function:var(--animation--timing--function);
+    }
+    100%{
+      transform:translateX(var(--leg--translate--from)) rotate(var(--leg--rotation--from));
+      animation-timing-function:var(--animation--timing--function);
+    }
+}
+
+/* boot */
+@keyframes animation--boot{
+
+  0%{
+    transform:rotate(var(--boot--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+  }
+  50%{
+    transform:rotate(var(--boot--rotation--to));
+    animation-timing-function:var(--animation--timing--function);
+  }
+  100%{
+    transform:rotate(var(--boot--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+  }
+}
+
+/* foot */
+
+@keyframes animation--foot{
+
+  0%{
+    transform:rotate(var(--foot--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+    
+  }
+  50%{
+    
+    transform:rotate(var(--foot--rotation--to));
+    animation-timing-function:var(--animation--timing--function);
+  }
+  100%{
+    transform:rotate(var(--foot--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+  }
+}
+
+/* Belly flop */
+@keyframes animation--belly{
+  
+
+  0%{
+      transform:translateY(0);
+  }
+  30%{
+      transform:translateY(calc(var(--belly--bounce) * -1));
+  }
+  55%{
+      transform:translateY(calc(var(--belly--bounce) * .3));
+  }
+  80%{
+      transform:translateY(0%);
+  }
+  
+}
+
+/* Head flop */
+@keyframes animation--head{
+
+  
+ 
+
+  0%{
+      transform:rotate(0deg);
+  }
+  40%{
+      transform:rotate(calc(var(--head--rotation) * -1));
+  }
+  60%{
+      transform:rotate(calc(var(--head--rotation) * 0.2));
+  }
+  80%{
+      transform:rotate(0deg);
+  }
+  
+  
+  
+}
+
+/* Nose animation */
+@keyframes animation--nose{
+  0%{
+      transform:rotate(0deg);
+  }
+  30%{
+      transform:rotate(0deg);
+  }
+  40%{
+      transform:rotate(calc(var(--nose--rotation) * 1 ));
+  }
+  50%{
+      transform:rotate(calc(var(--nose--rotation) * -0.5 ));
+  }
+  60%{
+      transform:rotate(calc(var(--nose--rotation) * -0.25 ));
+  }
+  70%{
+      transform:rotate(calc(var(--nose--rotation) * 0.1 ));
+  }
+  80%{
+      transform:rotate(0deg);
+  }
+}
+
+
+/* Hat animation */
+@keyframes animation--hat{
+  
+  0%{
+    transform:translateY(0%);
+    animation-timing-function:var(--animation--timing--function);
+  }
+  25%{
+      transform:translateY(var(--hat--jump));
+      animation-timing-function:var(--animation--timing--function);
+  }
+  40%{
+      transform:translateY(0%);
+      animation-timing-function:var(--animation--timing--function);
+  }
+
+  50%{
+      transform:translateY(0%);
+      animation-timing-function:var(--animation--timing--function);
+    }
+    75%{
+        transform:translateY(var(--hat--jump));
+        animation-timing-function:var(--animation--timing--function);
+    }
+    90%{
+        transform:translateY(0%);
+        animation-timing-function:var(--animation--timing--function);
+    }
+
+  
+
+  
+  
+}
+
+/* Hat ball animation */
+@keyframes animation--hat--ball{
+  0%{
+      transform:rotate(0deg);
+  }
+  30%{
+      transform:rotate(0deg);
+  }
+  40%{
+      transform:rotate(calc(var(--hat--ball--rotation) * 1 ));
+  }
+  50%{
+      transform:rotate(calc(var(--hat--ball--rotation) * -0.5 ));
+  }
+  60%{
+      transform:rotate(calc(var(--hat--ball--rotation) * -0.25 ));
+  }
+  70%{
+      transform:rotate(calc(var(--hat--ball--rotation) * 0.1 ));
+  }
+  80%{
+      transform:rotate(0deg);
+  }
+}
+
+
+@keyframes animation--arm{
+
+  0%{
+    transform:translateX(var(--arm--translate--from)) rotate(var(--arm--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+  }
+  
+  50%{
+    transform:translateX(var(--arm--translate--to)) rotate(var(--arm--rotation--to));
+    animation-timing-function:var(--animation--timing--function);
+  }
+  100%{
+    transform:translateX(var(--arm--translate--from)) rotate(var(--arm--rotation--from));
+    animation-timing-function:var(--animation--timing--function);
+  }
+}
+
+
+@keyframes animation--footstep{
+
+  0%{
+    transform:translateX(0%);
+    animation-timing-function:linear;
+  }
+  100%{
+      transform:translateX(-1800%);
+      
+  }
+}
+
+@keyframes animation--snowflake{
+
+  0%{
+    transform:translate(13000%,-5000%);
+    animation-timing-function:linear;
+  }
+  100%{
+      transform:translate(-10000%,4000%);
+  }
+}
+
+@keyframes animation--star{
+
+  0%{
+    opacity:0.2;
+    
+  }
+  50%{
+      opacity:0.1;
+  }
+  100%{
+      opacity:0.2;
+  }
+}
+
